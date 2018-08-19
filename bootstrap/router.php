@@ -1,10 +1,8 @@
 <?php
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/', function(){ echo "root"; });
-    $r->addRoute('GET', '/item/{id:\d+}', function($id){
-        throw new Exception("Item #{$id} does not exist (exception prettifier test)");
-    });
+    $r->addRoute('GET', '/', [new App\Controllers\TaskController, 'index']);
+    $r->addRoute('GET', '/task/{id:\d+}', [new App\Controllers\TaskController, 'show']);
 });
 
 // Fetch method and URI from somewhere
