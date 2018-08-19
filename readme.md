@@ -26,3 +26,11 @@ insecure as the controller is too simple and does not include any authentication
 #### Test
 
 Is there really anything decent to test in this project?
+
+#### Template engine cache
+
+It's disabled for development convenience (commented out in AbstractController).
+For production:
+1. Service container should be implemented in a project. Twig should be a container instead of a
+   static var in Abstract Controller.
+2. Twig should have it's own config file including cache configuration.

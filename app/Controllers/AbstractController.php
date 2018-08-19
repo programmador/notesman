@@ -25,7 +25,7 @@ abstract class AbstractController
     {
         $loader = new Twig_Loader_Filesystem(__DIR__.'/../../views');
         self::$twig = new Twig_Environment($loader, array(
-            'cache' => __DIR__.'/../../storage/views_cache',
+            //'cache' => __DIR__.'/../../storage/views_cache',
         ));
     }
 
