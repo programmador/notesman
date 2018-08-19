@@ -21,6 +21,11 @@ abstract class AbstractController
         echo self::$twig->render($template . '.twig', $args);
     }
 
+    protected function redirect(string $url)
+    {
+        header('Location: ' . $url);
+    }
+
     private function loadTwig()
     {
         $loader = new Twig_Loader_Filesystem(__DIR__.'/../../views');

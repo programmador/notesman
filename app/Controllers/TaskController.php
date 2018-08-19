@@ -30,8 +30,8 @@ class TaskController extends AbstractController
         $task->description = $_POST['task_description'];
         $user->tasks()->save($task);
 
-        // @TODO if admin - do not show "thank's", just return to an editor
-        $this->renderTemplate("task/saved");
+        // @TODO if admin - do not redirect to list, just return to an editor
+        $this->redirect("/");
     }
 
     public function show($id)
