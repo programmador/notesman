@@ -9,4 +9,9 @@ class User extends Model
 
     protected $fillable = ['email'];
 
+    public function tasks()
+    {
+        return $this->hasMany('Task', 'user_id', 'id');
+    }
+
 }

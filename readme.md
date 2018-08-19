@@ -34,3 +34,7 @@ For production:
 1. Service container should be implemented in a project. Twig should be a container instead of a
    static var in Abstract Controller.
 2. Twig should have it's own config file including cache configuration.
+
+#### Database schema
+
+Add index at least to email column of users table. Should be done in a new migration

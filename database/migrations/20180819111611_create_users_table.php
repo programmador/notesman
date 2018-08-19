@@ -8,7 +8,7 @@ class CreateUsersTable extends Migration
 
     public function up()
     {
-        $this->schema->create('users', function(Illuminate\Database\Schema\Blueprint $table){
+        $this->schema->create('users', function(Blueprint $table){
             $table->increments('id');
             $table->string('email');
             $table->text('name');
