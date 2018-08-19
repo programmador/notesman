@@ -1,7 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\User;
-use \Exception;
+use Exception;
 
 class TaskController extends AbstractController
 {
