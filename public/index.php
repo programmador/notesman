@@ -1,6 +1,7 @@
 <?php
 
     require __DIR__.'/../vendor/autoload.php';
+    require_once __DIR__."/../config/env.php";
 
     $whoops = new \Whoops\Run;
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
@@ -18,7 +19,10 @@
         case FastRoute\Dispatcher::FOUND:
             $handler = $routeInfo[1];
             $vars = $routeInfo[2];
+
+            require_once __DIR__."/../bootstrap/eloquent.php";
             call_user_func_array($handler, $vars);
+
             break;
     }
 
