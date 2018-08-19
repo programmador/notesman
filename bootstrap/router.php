@@ -2,7 +2,9 @@
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', function(){ echo "root"; });
-    $r->addRoute('GET', '/item/{id:\d+}', function($id){ echo "item {$id}"; });
+    $r->addRoute('GET', '/item/{id:\d+}', function($id){
+        throw new Exception("Item #{$id} does not exist (exception prettifier test)");
+    });
 });
 
 // Fetch method and URI from somewhere

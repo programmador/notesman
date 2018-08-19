@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "nikic/fast-route": "dev-master"
+        "nikic/fast-route": "dev-master",
+        "filp/whoops": "^2.2@dev"
     }
 }
