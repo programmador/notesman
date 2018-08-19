@@ -36,7 +36,9 @@ class TaskController extends AbstractController
 
     public function show($id)
     {
-        throw new Exception("Task #{$id} does not exist (exception prettifier test in controller)");
+        $task = Task::with('user')->where('id', $id)->first();
+        $readonly = true;
+        $this->renderTemplate("task/editor", compact('task', 'readonly'));
     }
 
 }

@@ -36,7 +36,7 @@
         {% for task in tasks %}
             {# @TODO: for administrator the tasks should be links #}
             <tr>
-                <td>{{ task.id }}</td>
+                <td><a href="/task/{{ task.id }}">{{ task.id }}</a></td>
                 <td>{{ task.user.email }}</td>
                 <td>{{ task.user.name }}</td>
                 <td>{{ task.description }}</td>

@@ -15,20 +15,40 @@
             <tbody>
                 <tr>
                     <td>User email:</td>
-                    <td><input type="text" name="user_email"></td>
+                    <td>
+                        {% if task is defined and readonly %}
+                            {{ task.user.email }}
+                        {% else %}
+                            <input type="text" name="user_email">
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>User name:</td>
-                    <td><input type="text" name="user_name"></td>
+                    <td>
+                        {% if task is defined and readonly %}
+                            {{ task.user.name }}
+                        {% else %}
+                            <input type="text" name="user_name">
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>Task description:</td>
-                    <td><input type="text" name="task_description"></td>
+                    <td>
+                        {% if task is defined and readonly %}
+                            {{ task.description }}
+                        {% else %}
+                            <input type="text" name="task_description">
+                        {% endif %}
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-        <input type="submit" class="btn btn-primary" value="Save">
+        {% if not readonly %}
+            <input type="submit" class="btn btn-primary" value="Save">
+        {% endif %}
         <a href="/" class="btn btn-link">Back to task list</a>
     </form>
 
