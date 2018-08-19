@@ -1,0 +1,48 @@
+{% extends "layout.twig" %}
+
+{% block title %}Task list{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#task-list').DataTable({
+                    "pageLength": 3,
+                    "lengthChange": false,
+                    "searching": false
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+<table id="task-list" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User email</th>
+            <th>User name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+            {# @TODO: for administrator the tasks should be links #}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.user.email }}</td>
+                <td>{{ task.user.name }}</td>
+                <td>{{ task.description }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

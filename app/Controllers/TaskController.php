@@ -9,7 +9,8 @@ class TaskController extends AbstractController
 
     public function index()
     {
-        $this->renderRaw("Hello from controller!");
+        $tasks = Task::with('user')->get();
+        $this->renderTemplate("task/index", compact('tasks'));
     }
 
     public function create()
