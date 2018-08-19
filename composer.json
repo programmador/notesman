@@ -1,0 +1,14 @@
+{
+    "name": "programmador/notesman",
+    "description": "Jira epic killer",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Konotop",
+            "email": "alexander.konotop@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
