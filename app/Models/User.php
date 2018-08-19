@@ -11,7 +11,7 @@ class User extends Model
 
     public function tasks()
     {
-        return $this->hasMany('Task', 'user_id', 'id');
+        return $this->hasMany('App\Models\Task', 'user_id', 'id');
     }
 
 }

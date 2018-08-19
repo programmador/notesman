@@ -38,3 +38,14 @@ For production:
 #### Database schema
 
 Add index at least to email column of users table. Should be done in a new migration
+
+#### Validation
+
+No validation is being performed in the project at all. The best decision would be using some kind
+of easily set up library for that, for example as the one in Laravel. The other possible way is to
+use a form handling library which is able to render, fill, validate, save and highlight errors.
+
+#### Routing
+
+FastRoute doesn't include any way to conveniently render route URI's by route names. Though maybe
+it includes one but it's not used in the project anyway.
