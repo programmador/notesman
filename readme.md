@@ -47,5 +47,7 @@ use a form handling library which is able to render, fill, validate, save and hi
 
 #### Routing
 
-FastRoute doesn't include any way to conveniently render route URI's by route names. Though maybe
-it includes one but it's not used in the project anyway.
+1. FastRoute doesn't include any way to conveniently render route URI's by route names. Though maybe
+   it includes one but it's not used in the project anyway.
+2. Routes should be daclared in a separate config file. There's a lib for FastRoute at Github for
+   implementing that. Though it has scarce documentation
