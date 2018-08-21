@@ -28,6 +28,7 @@ class TaskController extends AbstractController
 
         $task = new Task();
         $task->description = $_POST['task_description'];
+        $task->image = $this->getUploadedImage();
         $user->tasks()->save($task);
 
         // @TODO if admin - do not redirect to list, just return to an editor
@@ -39,6 +40,21 @@ class TaskController extends AbstractController
         $task = Task::with('user')->where('id', $id)->first();
         $readonly = true;
         $this->renderTemplate("task/editor", compact('task', 'readonly'));
+    }
+
+    private function getUploadedImage()
+    {
+        if(!isset($_FILES['task_image'])) {
+            return null;
+        }
+        $filePath = $_FILES['task_image']['tmp_name'];
+        if(!$imgInfo = getimagesize($filePath)) {
+            return null;
+        }
+
+        return file_get_contents($filePath);
+
+        throw new \Exception(json_encode($imgInfo));
     }
 
 }

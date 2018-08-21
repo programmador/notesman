@@ -50,7 +50,7 @@
 
 {% block content %}
 
-    <form action="/task/save" method="POST">
+    <form action="/task/save" method="POST" enctype="multipart/form-data">
         <table class="table table-striped">
             <tbody>
                 <tr>
@@ -78,8 +78,8 @@
                 <tr>
                     <td>Image:</td>
                     <td>
-                        {% if task is defined and readonly %}
-                            {# @TODO display uploaded image #}
+                        {% if task is defined and readonly and task.image %}
+                            <img src="data:{{ task.getImageMime() }};base64,{{ task.getImageHex() }}">
                         {% else %}
                             <input type="file" name="task_image" v-on:change="onImageChange" >
                         {% endif %}
