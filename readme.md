@@ -44,3 +44,6 @@ use a form handling library which is able to render, fill, validate, save and hi
    it includes one but it's not used in the project anyway.
 2. Routes should be daclared in a separate config file. There's a lib for FastRoute at Github for
    implementing that. Though it has scarce documentation
+
+#### Templates
+JS and CSS assets should be apart from twig templates code

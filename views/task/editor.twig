@@ -8,6 +8,32 @@
     {% endif %}
 {% endblock %}
 
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        #preview {
+            width: 400px;
+            margin: 20px auto;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#content',
+            data() { return {
+                user_email: '',
+                user_name: '',
+                task_description: '',
+                show_preview: ''
+            }}
+        })
+    </script>
+{% endblock %}
+
 {% block content %}
 
     <form action="/task/save" method="POST">
@@ -19,7 +45,7 @@
                         {% if task is defined and readonly %}
                             {{ task.user.email }}
                         {% else %}
-                            <input type="text" name="user_email">
+                            <input v-model="user_email" type="text" name="user_email">
                         {% endif %}
                     </td>
                 </tr>
@@ -29,7 +55,9 @@
                         {% if task is defined and readonly %}
                             {{ task.user.name }}
                         {% else %}
-                            <input type="text" name="user_name">
+                            <input v-model="user_name" type="text" name="user_name"
+                                v-on:change="show_preview = false"
+                                v-on:keydown="show_preview = false">
                         {% endif %}
                     </td>
                 </tr>
@@ -39,7 +67,9 @@
                         {% if task is defined and readonly %}
                             {{ task.description }}
                         {% else %}
-                            <input type="text" name="task_description">
+                            <input v-model="task_description" type="text" name="task_description"
+                                v-on:change="show_preview = false"
+                                v-on:keydown="show_preview = false">
                         {% endif %}
                     </td>
                 </tr>
@@ -47,9 +77,32 @@
         </table>
 
         {% if not readonly %}
-            <input type="submit" class="btn btn-primary" value="Save">
+            <input type="button" class="btn" value="Preview"
+                v-on:click="show_preview = true"
+                v-bind:class="{
+                    'btn-primary': user_email && user_name && task_description,
+                    'btn-light': !user_email || !user_name || !task_description
+                }">
         {% endif %}
         <a href="/" class="btn btn-link">Back to task list</a>
+
+
+        {% if not readonly %}
+            <div class="card" id="preview"
+                    v-if="show_preview && user_name && user_email && task_description">
+                <div class="card-header">Task preview</div>
+                <div class="card-body">
+                    <h4 class="card-title" v-text="user_name">John Doe</h4>
+                    <p class="card-text" v-text="user_email"></p>
+                    <hr>
+                    <p class="card-text" v-text="task_description"></p>
+                </div>
+                <div class="card-footer text-center">
+                    <input type="submit" class="btn btn-primary" value="Save task">
+                </div>
+            </div>
+        {% endif %}
+
     </form>
 
 {% endblock %}
