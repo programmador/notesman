@@ -106,7 +106,6 @@ class TaskController extends AbstractController
         imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $oldWidth, $oldHeight);
 
         $descriptor = tmpfile();
-        //$descriptor = fopen(__DIR__ . '/../../storage/tempimage.' . ($jpg ? 'jpg' : 'png'), 'w+');
         if($png) {
             imagepng($dst, $descriptor, 8);
         } elseif ($jpg) {
