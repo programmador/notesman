@@ -78,8 +78,10 @@
                 <tr>
                     <td>Image:</td>
                     <td>
-                        {% if task is defined and readonly and task.image %}
-                            <img src="data:{{ task.getImageMime() }};base64,{{ task.getImageHex() }}">
+                        {% if task is defined and readonly %}
+                            {% if task.image %}
+                                <img src="data:{{ task.getImageMime() }};base64,{{ task.getImageHex() }}">
+                            {% endif %}
                         {% else %}
                             <input type="file" name="task_image" v-on:change="onImageChange" >
                         {% endif %}

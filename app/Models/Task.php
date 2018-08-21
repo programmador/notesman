@@ -14,7 +14,7 @@ class Task extends Model
 
     public function getImageHex()
     {
-        return base64_encode($this->image);
+        return base64_encode($this->getImageBlob());
     }
 
     public function getImageInfo() : array
@@ -22,12 +22,22 @@ class Task extends Model
         if(!$this->image) {
             return [];
         }
-        return getimagesizefromstring($this->image);
+        return getimagesizefromstring($this->getImageBlob());
     }
 
     public function getImageMime()
     {
         return $this->getImageInfo()['mime'];
+    }
+
+    public function saveImageBlob($blob)
+    {
+        $this->image = gzdeflate($blob, 9);
+    }
+
+    public function getImageBlob()
+    {
+        return gzinflate($this->image);
     }
 
 }

@@ -28,7 +28,7 @@ class TaskController extends AbstractController
 
         $task = new Task();
         $task->description = $_POST['task_description'];
-        $task->image = $this->getUploadedImage();
+        $task->saveImageBlob($this->getUploadedImage());
         $user->tasks()->save($task);
 
         // @TODO if admin - do not redirect to list, just return to an editor
