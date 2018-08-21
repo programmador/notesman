@@ -53,8 +53,6 @@ class TaskController extends AbstractController
         }
 
         return file_get_contents($filePath);
-
-        throw new \Exception(json_encode($imgInfo));
     }
 
 }
