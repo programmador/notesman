@@ -28,8 +28,22 @@
                 user_email: '',
                 user_name: '',
                 task_description: '',
-                show_preview: ''
-            }}
+                show_preview: '',
+                task_img_url: null
+            }},
+            methods: {
+                onImageChange(e) {
+                    this.show_preview = false
+                    const img = e.target.files[0];
+                    this.task_img_url = URL.createObjectURL(img);
+                },
+                formFilled() {
+                    return this.task_img_url
+                        && this.user_email
+                        && this.user_name
+                        && this.task_description;
+                }
+            }
         })
     </script>
 {% endblock %}
@@ -62,6 +76,16 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Image:</td>
+                    <td>
+                        {% if task is defined and readonly %}
+                            {# @TODO display uploaded image #}
+                        {% else %}
+                            <input type="file" name="task_image" v-on:change="onImageChange" >
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
                     <td>Task description:</td>
                     <td>
                         {% if task is defined and readonly %}
@@ -80,8 +104,8 @@
             <input type="button" class="btn" value="Preview"
                 v-on:click="show_preview = true"
                 v-bind:class="{
-                    'btn-primary': user_email && user_name && task_description,
-                    'btn-light': !user_email || !user_name || !task_description
+                    'btn-primary': formFilled(),
+                    'btn-light': !formFilled()
                 }">
         {% endif %}
         <a href="/" class="btn btn-link">Back to task list</a>
@@ -91,6 +115,8 @@
             <div class="card" id="preview"
                     v-if="show_preview && user_name && user_email && task_description">
                 <div class="card-header">Task preview</div>
+                <img class="card-img-top" src="" alt="Task image"
+                    v-if="task_img_url" :src="task_img_url">
                 <div class="card-body">
                     <h4 class="card-title" v-text="user_name">John Doe</h4>
                     <p class="card-text" v-text="user_email"></p>

@@ -46,4 +46,7 @@ use a form handling library which is able to render, fill, validate, save and hi
    implementing that. Though it has scarce documentation
 
 #### Templates
+
 JS and CSS assets should be apart from twig templates code
+
+Check for selected file type in JS before allowing task preview
